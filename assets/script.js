@@ -33,9 +33,25 @@ var requestOptions = {
   method: 'GET',
   redirect: 'follow'
 };
+
+fetch('https://imdb-api.com/en/API/Top250Movies/k_9fv35bw7')
+.then(function(response){
+  return response.json();
+})
+.then(function(data){
+  console.log(data);
+  
+  var movies = document.querySelectorAll('.movie');
+  console.log(movies.length);
+  for(var i = 0; i < movies.length; i++){
+    var randomIndex = Math.floor(Math.random() * 10);
+    console.log(i);
+    movies[i].src = data.items[i].image;
+  }
+});
  
-fetch('https://imdb-api.com/en/API/Title/k_9fv35bw7/tt1832382', requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-genreButtonsEl.addEventListener('click', buttonClickHandler)
+// fetch('https://imdb-api.com/en/API/Title/k_9fv35bw7/tt1832382', requestOptions)
+//   .then(response => response.text())
+//   .then(result => console.log(result))
+//   .catch(error => console.log('error', error));
+// genreButtonsEl.addEventListener('click', buttonClickHandler)
