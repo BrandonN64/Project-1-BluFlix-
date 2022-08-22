@@ -51,7 +51,7 @@ searchResult.addEventListener('keypress', function (event) {
   }
   console.log(searchInput);
   document.getElementById('random-movie-section').style.display = "none";
-  fetch("https://imdb-api.com/en/API/SearchMovie/k_rn682530/" + searchInput)
+  fetch("https://imdb-api.com/en/API/SearchMovie/k_1xhrl5e9/" + searchInput)
   .then(response => response.json())
   .then(result => {
     console.log(result)
@@ -110,7 +110,7 @@ searchResult.addEventListener('keypress', function (event) {
   }
 });
 
-fetch('https://imdb-api.com/en/API/Top250Movies/k_rn682530')
+fetch('https://imdb-api.com/en/API/Top250Movies/k_1xhrl5e9')
 .then(function(response){
   return response.json();
 })
