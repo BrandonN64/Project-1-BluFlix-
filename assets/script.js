@@ -35,7 +35,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch('https://imdb-api.com/en/API/Top250Movies/k_6jj6674o')
+fetch('https://imdb-api.com/en/API/Top250Movies/k_6kx1w102')
 .then(function(response){
   return response.json();
 })
@@ -97,6 +97,7 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_6jj6674o')
     ratingHeading.textContent = data.items[randomIndex].imDbRating;
     
     movies[i].src = data.items[randomIndex].image;
+    movies[i].style.width="100px";
     randomMovies[i].append(fullTitle);
     randomMovies[i].append(ratingHeading);
     randomMovies[i].append(button);
@@ -130,13 +131,6 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_6jj6674o')
 
   }
 });
- 
-// fetch('https://imdb-api.com/en/API/Title/k_9fv35bw7/tt1832382', requestOptions)
-//   .then(response => response.text())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));
-// genreButtonsEl.addEventListener('click', buttonClickHandler)
-
 function initMap() {
 	var myMapCenter = { lat: 41.700540, lng: -72.559270 };
 
