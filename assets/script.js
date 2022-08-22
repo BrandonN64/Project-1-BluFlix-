@@ -22,6 +22,9 @@ function randomMoviesSpan() {
   document.getElementById('Movies').style.display = 'none';
   document.getElementById('myList').style.display = 'none';
   document.getElementById('Genres').style.display = 'none';
+  for(var i = 0; i < document.getElementsByTagName("section").length; i++){
+    document.getElementsByTagName('section')[i].style.display = 'none';
+  };
   document.getElementById('random-movie-section').style.display = "block";
 }
 var buttonClickHandler = function(event) {
@@ -35,7 +38,6 @@ var requestOptions = {
 };
 var searchResult = document.getElementById('searchBar');
 var movieOptions = [];
-
 searchResult.addEventListener('keypress', function (event) {
   if (event.key === "Enter") {
   var searchInput = document.getElementById("searchBar").value;
@@ -46,7 +48,7 @@ searchResult.addEventListener('keypress', function (event) {
   }
   console.log(searchInput);
   document.getElementById('random-movie-section').style.display = "none";
-  fetch("https://imdb-api.com/en/API/SearchMovie/k_6jj6674o/" + searchInput)
+  fetch("https://imdb-api.com/en/API/SearchMovie/k_bjfb6obj/" + searchInput)
   .then(response => response.json())
   .then(result => {
     console.log(result)
@@ -74,7 +76,7 @@ searchResult.addEventListener('keypress', function (event) {
   }
 });
 
-fetch('https://imdb-api.com/en/API/Top250Movies/k_6kx1w102')
+fetch('https://imdb-api.com/en/API/Top250Movies/k_bjfb6obj')
 .then(function(response){
   return response.json();
 })
