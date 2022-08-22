@@ -1,5 +1,5 @@
 # Project-1-Bluflix-
-
+Made By: The Eternals (Brandon, Brydge, and Claudio)
 # Description
 Description of the project: This is a website that lets you browse movies, see the ratings on IMDB, and search for movies that you want to see. It also allows you to see nearby movie theaters so you have the ability to find nearby movie theaters. This website was designed with a mobile-first approach that way anyone would be able to access it, even on the go. 
 
