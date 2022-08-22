@@ -67,6 +67,7 @@ searchResult.addEventListener('keypress', function (event) {
      const sectionDiv = document.createElement ('section')
      const newDiv = document.createElement('div')
      newDiv.setAttribute('data-index', i);
+     newDiv.setAttribute('style','max-height:340px')
      const newContent = document.createTextNode(result.results[i].title)
      var paragraph = document.createElement('p');
      var searchImgEl = document.createElement('img');
