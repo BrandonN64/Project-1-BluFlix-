@@ -34,7 +34,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch('https://imdb-api.com/en/API/Top250Movies/k_va4qdhl7')
+fetch('https://imdb-api.com/en/API/Top250Movies/k_6jj6674o')
 .then(function(response){
   return response.json();
 })
@@ -66,6 +66,7 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_va4qdhl7')
     fullTitle.style.display = 'block';
     imgEl.src = storeobjects.objects[i][1];
     fullTitle.setAttribute('href', 'https://www.imdb.com/title/' + storeobjects.objects[i][2]);
+    fullTitle.setAttribute('target', '_blank');
 
     myMovie.append(imgEl);
     myMovie.append(fullTitle);
@@ -77,7 +78,7 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_va4qdhl7')
 
 
 
-  
+  var index = 0;
   for(var i = 0; i < movies.length; i++){
 
     var fullTitle = document.createElement('a');
@@ -91,6 +92,7 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_va4qdhl7')
     fullTitle.textContent = data.items[randomIndex].title;
     fullTitle.style.display = 'block';
     fullTitle.setAttribute('href', 'https://www.imdb.com/title/' + data.items[randomIndex].id);
+    fullTitle.setAttribute('target', '_blank');
     ratingHeading.textContent = data.items[randomIndex].imDbRating;
     
     movies[i].src = data.items[randomIndex].image;
@@ -100,9 +102,27 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_va4qdhl7')
     randomMovies[i].style.display = 'table';
     randomMovies[i].setAttribute('style', 'overflow: auto');
     randomMovies[i].setAttribute('data-index', randomIndex);
+
+    var myMovie = document.createElement('div');
+    myMovie.setAttribute('class','w3-card-2 w3-col w3-padding-64 w3-margin s2 w3-mobile w3-center');
+    myMovie.setAttribute('data-index', randomIndex);
     button.addEventListener('click', function(){
       storeobjects.objects.push([data.items[this.parentElement.getAttribute('data-index')].title, data.items[this.parentElement.getAttribute('data-index')].image, data.items[this.parentElement.getAttribute('data-index')].id]);
       localStorage.setItem('storedObjects',JSON.stringify(storeobjects));
+      var myMovie = document.createElement('div');
+      myMovie.setAttribute('class','w3-card-2 w3-col w3-padding-64 w3-margin s2 w3-mobile w3-center');
+      var fullTitle = document.createElement('a');
+      var imgEl = document.createElement('img');
+      fullTitle.textContent = storeobjects.objects[index][0];
+      fullTitle.style.display = 'block';
+      imgEl.src = storeobjects.objects[index][1];
+      fullTitle.setAttribute('href', 'https://www.imdb.com/title/' + storeobjects.objects[index][2]);
+      fullTitle.setAttribute('target', '_blank');
+  
+      myMovie.append(imgEl);
+      myMovie.append(fullTitle);
+      myList.append(myMovie);
+      index++;
     });
     
   
