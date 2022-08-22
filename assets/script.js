@@ -36,6 +36,13 @@ var requestOptions = {
   method: 'GET',
   redirect: 'follow'
 };
+var index = 0;
+var storeobjects = {
+  objects: []
+}
+var movies = document.querySelectorAll('.movie');
+var randomMovies = document.querySelectorAll('.randomMovie');
+var myList = document.getElementById('myList');
 var searchResult = document.getElementById('searchBar');
 var movieOptions = [];
 searchResult.addEventListener('keypress', function (event) {
@@ -48,7 +55,7 @@ searchResult.addEventListener('keypress', function (event) {
   }
   console.log(searchInput);
   document.getElementById('random-movie-section').style.display = "none";
-  fetch("https://imdb-api.com/en/API/SearchMovie/k_bjfb6obj/" + searchInput)
+  fetch("https://imdb-api.com/en/API/SearchMovie/k_rn682530/" + searchInput)
   .then(response => response.json())
   .then(result => {
     console.log(result)
@@ -59,33 +66,61 @@ searchResult.addEventListener('keypress', function (event) {
      console.log(document.getElementsByTagName('section'))
      const sectionDiv = document.createElement ('section')
      const newDiv = document.createElement('div')
+     newDiv.setAttribute('data-index', i);
      const newContent = document.createTextNode(result.results[i].title)
-     const movieTitle = document.createElement('header')
-     newDiv.appendChild(newContent)
+     var paragraph = document.createElement('p');
+     var searchImgEl = document.createElement('img');
+     searchImgEl.src = result.results[i].image;
+     searchImgEl.style.width = '100px';
+     var button = document.createElement('button');
+     button.setAttribute('type', 'button');
+     button.setAttribute('class', 'w3-light-blue w3-text-white w3-hover-cyan');
+     button.textContent = 'Add to list';
+     button.addEventListener('click', function(){
+      storeobjects.objects.push([result.results[this.parentElement.getAttribute('data-index')].title, result.results[this.parentElement.getAttribute('data-index')].image, result.results[this.parentElement.getAttribute('data-index')].id]);
+      localStorage.setItem('storedObjects',JSON.stringify(storeobjects));
+      var myMovie = document.createElement('div');
+      myMovie.setAttribute('class','w3-card-2 w3-col w3-padding-64 w3-margin s2 w3-mobile w3-center');
+      var fullTitle = document.createElement('a');
+      var imgEl = document.createElement('img');
+      fullTitle.textContent = storeobjects.objects[index][0];
+      fullTitle.style.display = 'block';
+      imgEl.src = storeobjects.objects[index][1];
+      imgEl.style.width = '100px';
+      fullTitle.setAttribute('href', 'https://www.imdb.com/title/' + storeobjects.objects[index][2]);
+      fullTitle.setAttribute('target', '_blank');
+  
+      myMovie.append(imgEl);
+      myMovie.append(fullTitle);
+      myList.append(myMovie);
+      index++;
+    });
+     paragraph.append(newContent);
+     newDiv.append(searchImgEl);
+     newDiv.append(paragraph);
+     newDiv.append(button);
       newDiv.classList.add('w3-card-2', 'w3-padding-64', 'w3-margin', 'w3-col', 's2', 'w3-mobile', 'w3-center', 'searchMovie')
       sectionDiv.append(newDiv)
       document.body.appendChild(sectionDiv)
       console.log(i);
-      newDiv.style.backgroundImage = "url('" + result.results[i].image + "')"
-      newDiv.style.backgroundRepeat = "no-repeat"
-      newDiv.style.backgroundClip = "padding-box"
-      newDiv.style.backgroundSize = "contain"
+      // newDiv.style.backgroundImage = "url('" + result.results[i].image + "')"
+      // newDiv.style.backgroundRepeat = "no-repeat"
+      // newDiv.style.backgroundClip = "padding-box"
+      // newDiv.style.backgroundSize = "contain"
     }
   }) 
   .catch(error => console.log('error', error));
   }
 });
 
-fetch('https://imdb-api.com/en/API/Top250Movies/k_bjfb6obj')
+fetch('https://imdb-api.com/en/API/Top250Movies/k_rn682530')
 .then(function(response){
   return response.json();
 })
 .then(function(data){
   console.log(data);
   
-  var storeobjects = {
-    objects: []
-  }
+ 
   if(JSON.parse(localStorage.getItem('storedObjects')) !== null){
     var loadContents = JSON.parse(localStorage.getItem('storedObjects'));
     console.log(loadContents.objects.length);
@@ -96,9 +131,9 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_bjfb6obj')
     console.log(storeobjects.objects);
   }
 
-  var movies = document.querySelectorAll('.movie');
-  var randomMovies = document.querySelectorAll('.randomMovie');
-  var myList = document.getElementById('myList');
+  // var movies = document.querySelectorAll('.movie');
+  // var randomMovies = document.querySelectorAll('.randomMovie');
+  // var myList = document.getElementById('myList');
   for(var i = 0; i < storeobjects.objects.length; i++){
     var myMovie = document.createElement('div');
     myMovie.setAttribute('class','w3-card-2 w3-col w3-padding-64 w3-margin s2 w3-mobile w3-center');
@@ -107,6 +142,7 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_bjfb6obj')
     fullTitle.textContent = storeobjects.objects[i][0];
     fullTitle.style.display = 'block';
     imgEl.src = storeobjects.objects[i][1];
+    imgEl.style.width = '100px';
     fullTitle.setAttribute('href', 'https://www.imdb.com/title/' + storeobjects.objects[i][2]);
     fullTitle.setAttribute('target', '_blank');
 
@@ -120,7 +156,7 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_bjfb6obj')
 
 
 
-  var index = 0;
+  
   for(var i = 0; i < movies.length; i++){
 
     var fullTitle = document.createElement('a');
@@ -143,7 +179,7 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_bjfb6obj')
     randomMovies[i].append(ratingHeading);
     randomMovies[i].append(button);
     randomMovies[i].style.display = 'table';
-    randomMovies[i].setAttribute('style', 'overflow: auto');
+    randomMovies[i].setAttribute('style', 'max-height: 369px');
     randomMovies[i].setAttribute('data-index', randomIndex);
 
     var myMovie = document.createElement('div');
@@ -159,6 +195,7 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_bjfb6obj')
       fullTitle.textContent = storeobjects.objects[index][0];
       fullTitle.style.display = 'block';
       imgEl.src = storeobjects.objects[index][1];
+      imgEl.style.width = '100px';
       fullTitle.setAttribute('href', 'https://www.imdb.com/title/' + storeobjects.objects[index][2]);
       fullTitle.setAttribute('target', '_blank');
   
@@ -323,3 +360,9 @@ function initMap() {
 	});
 
 }
+
+document.getElementById('myList').addEventListener('click', function(){
+  for(var i = 0; i < document.getElementsByTagName("section").length; i++){
+    document.getElementsByTagName('section')[i].style.display = 'none';
+  };
+});
