@@ -41,9 +41,43 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_va4qdhl7')
 .then(function(data){
   console.log(data);
   
+  var storeobjects = {
+    objects: []
+  }
+  if(JSON.parse(localStorage.getItem('storedObjects')) !== null){
+    var loadContents = JSON.parse(localStorage.getItem('storedObjects'));
+    console.log(loadContents.objects.length);
+    for(var i = 0; i < loadContents.objects.length; i++){
+      storeobjects.objects.push(loadContents.objects[i]);
+    }
+
+    console.log(storeobjects.objects);
+  }
+
   var movies = document.querySelectorAll('.movie');
-  console.log(movies.length);
   var randomMovies = document.querySelectorAll('.randomMovie');
+  var myList = document.getElementById('myList');
+  for(var i = 0; i < storeobjects.objects.length; i++){
+    var myMovie = document.createElement('div');
+    myMovie.setAttribute('class','w3-card-2 w3-col w3-padding-64 w3-margin s2 w3-mobile w3-center');
+    var fullTitle = document.createElement('a');
+    var imgEl = document.createElement('img');
+    fullTitle.textContent = storeobjects.objects[i][0];
+    fullTitle.style.display = 'block';
+    imgEl.src = storeobjects.objects[i][1];
+    fullTitle.setAttribute('href', 'https://www.imdb.com/title/' + storeobjects.objects[i][2]);
+
+    myMovie.append(imgEl);
+    myMovie.append(fullTitle);
+    myList.append(myMovie);
+    
+  }
+
+
+
+
+
+  
   for(var i = 0; i < movies.length; i++){
 
     var fullTitle = document.createElement('a');
@@ -54,14 +88,10 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_va4qdhl7')
     button.textContent = 'Add to list';
     var randomIndex = Math.floor(Math.random() * 249);
   
-    console.log(data.items[randomIndex].fullTitle);
     fullTitle.textContent = data.items[randomIndex].title;
     fullTitle.style.display = 'block';
     fullTitle.setAttribute('href', 'https://www.imdb.com/title/' + data.items[randomIndex].id);
     ratingHeading.textContent = data.items[randomIndex].imDbRating;
-    var icon = document.createElement('i');
-    icon.setAttribute('class', 'fa fa-star');
-    ratingHeading.append(icon);
     
     movies[i].src = data.items[randomIndex].image;
     randomMovies[i].append(fullTitle);
@@ -69,6 +99,12 @@ fetch('https://imdb-api.com/en/API/Top250Movies/k_va4qdhl7')
     randomMovies[i].append(button);
     randomMovies[i].style.display = 'table';
     randomMovies[i].setAttribute('style', 'overflow: auto');
+    randomMovies[i].setAttribute('data-index', randomIndex);
+    button.addEventListener('click', function(){
+      storeobjects.objects.push([data.items[this.parentElement.getAttribute('data-index')].title, data.items[this.parentElement.getAttribute('data-index')].image, data.items[this.parentElement.getAttribute('data-index')].id]);
+      localStorage.setItem('storedObjects',JSON.stringify(storeobjects));
+    });
+    
   
 
   }
