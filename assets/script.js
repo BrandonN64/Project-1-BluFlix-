@@ -97,92 +97,82 @@ function initMap() {
     {
       name: 'Parkade Cinemas and Entertainment',
       location: {lat:41.780609, lng:-72.541832},
-      hours:''
+      hours:'11am to 10pm'
     },
     {
       name: 'Cinemark Buckland Hills 18 and IMAX',
       location: {lat:41.801041, lng:-72.547752},
-      hours:''
+      hours:'10am to 11pm'
     },
     {
       name: 'AMC Plainville 20',
       location: {lat:41.676571, lng:-72.841614},
-      hours:''
+      hours:'11am to 11pm'
     },
     {
       name: 'Metro Movies 12',
       location: {lat:41.558281, lng:-72.648193},
-      hours:''
+      hours:'11am to 10pm'
     },
     {
       name: 'FunFlicks of Connecticut',
       location: {lat:41.715570, lng:-72.667510},
-      hours:''
+      hours:'10am to 4pm'
     },
     {
       name: 'Apple Cinemas Simsbury 8',
       location: {lat:41.817379, lng:-72.865067},
-      hours:''
-    },
-    {
-      name: 'Lincoln Theater',
-      location: {lat:41.793789, lng:-72.716568},
-      hours:''
+      hours:'12pm to 9pm'
     },
     {
       name: 'Holiday Cinemas Stadium 14',
       location: {lat:41.487640, lng:-72.808060},
-      hours:''
+      hours:'11am to 10pm'
     },
     {
       name: 'AMC Southington 12',
       location: {lat:41.565540, lng:-72.908070},
-      hours:''
+      hours:'11am to 11pm'
     },
     {
       name: 'Apple Cinemas Waterbury',
       location: {lat:41.564892, lng:-73.007080},
-      hours:''
+      hours:'12pm to 9pm'
     },
     {
       name: 'Mansfield Movieplex 8',
       location: {lat:41.754410, lng:-72.193120},
-      hours:''
+      hours:'12pm to 9pm'
     },
     {
       name: 'Agawam Cinemas',
       location: {lat:42.060070, lng:-72.632460},
-      hours:''
+      hours:'10am to 8pm'
     },
     {
       name: 'Apple Cinemas Barkhamsted 9',
       location: {lat:41.817379, lng:-72.865067},
-      hours:''
+      hours:'12pm to 9pm'
     },
     {
       name: 'Cinemark West Springfield 15',
       location: {lat:42.128580, lng:-72.630060},
-      hours:''
+      hours:'10am to 11pm'
     },
     {
       name: 'Cinemark North Haven',
       location: {lat:41.359180, lng:-72.873848},
-      hours:''
-    },
-    {
-      name: 'Cine 4',
-      location: {lat:41.327461, lng:-72.879051},
-      hours:''
+      hours:'10am to 11pm'
     },
     {
       name: 'Marquee Cinemas',
       location: {lat:41.327461, lng:-72.879051},
-      hours:''
+      hours:'12pm to 7pm'
     },
     {
       name: 'Gilson Cafe & Cinema',
       location: {lat:41.921330, lng:-73.069510},
-      hours:''
+      hours:'6pm to 9pm'
     }
   ]
 	theaters.forEach(function(theater){
