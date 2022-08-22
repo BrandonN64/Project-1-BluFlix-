@@ -3,22 +3,23 @@
 
   <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/w3-css/4.1.0/w3.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BluluFlix+</title>
+    <title>BluFlix</title>
   </head>
-
   <body>
     <!-- This is the header -->
     <header>
       <div class='w3-container w3-blue homeIcon'>
-        <h1>BluluFlix+</h1>
+        <h1>BluFlix</h1>
       </div>
       <!--This is the Nav Bar -->
       <div class="w3-bar w3-light-blue">
         <input id="searchBar" type="text" class="w3-bar-item w3-input w3-border w3-border-black w3-col s3 s" placeholder="Search..">
-        <button class="w3-bar-item w3-button w3-hide-small w3-border w3-border-black w3-text-white w3-hover-cyan w3-col s3" onclick="navBarOptions('Movies')">Movies Near Me</button>
+        <button class="w3-bar-item w3-button w3-hide-small w3-border w3-border-black w3-text-white w3-hover-cyan w3-col s3" onclick="navBarOptions('Movies')">Theaters Near Me</button>
         <button class="w3-bar-item w3-button w3-hide-small w3-border w3-border-black w3-text-white w3-hover-cyan w3-col s3" onclick="navBarOptions('myList')">My List</button>
         <button class="w3-bar-item w3-button w3-hide-small w3-border w3-border-black w3-text-white w3-hover-cyan w3-col s3" onclick="navBarOptions('Genres')">Genres</button>
         <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium w3-hover-cyan" onclick="dynamicHamburger()">&#9776;</a>
@@ -34,24 +35,30 @@
       <div id="Movies" class="w3-container w3-display-container navBar" style="display:none">
         <span onclick="randomMoviesSpan()" class="w3-button w3-large w3-display-topright">&times;</span>
         <h2>Movies Near Me</h2>
-        <p>This is a placeholder</p>
+        <div id="info_div"></div>
+        <div id="map"></div>
       </div>
 
       <div id="myList" class="w3-container w3-display-container navBar" style="display:none">
         <span onclick="randomMoviesSpan()" class="w3-button w3-large w3-display-topright">&times;</span>
         <h2>My List</h2>
-        <p>This is a placeholder</p>
+  
       </div>
 
       <div id="Genres" class="w3-container w3-display-container navBar" style="display:none">
         <span onclick="randomMoviesSpan()" class="w3-button w3-large w3-display-topright">&times;</span>
         <h2>Genres</h2>
         <p id="genre-buttons" class="w3-ul"></p>
-        <li><a genre="action" href="#">Action</a></li>
         <li><a genre="adventure" href="https://www.imdb.com/search/title/?genres=adventure">Adventure</a></li>
+        <li><a genre="action" href="https://www.imdb.com/search/title/?genres=action">Action</a></li>
         <li><a genre="drama" href="https://www.imdb.com/search/title/?genres=drama">Drama</a></li>
         <li><a genre="comedy"href="https://www.imdb.com/search/title/?genres=comedy">Comedy</a></li>
         <li><a genre="horror" href="https://www.imdb.com/search/title/?genres=horror">Horror</a></li>
+        <li><a genre="horror" href="https://www.imdb.com/search/title/?genres=sci-fi">Sci-Fi</a></li>
+        <li><a genre="horror" href="https://www.imdb.com/search/title/?genres=romance">Romance</a></li>
+        <li><a genre="horror" href="https://www.imdb.com/search/title/?genres=mystery">Mystery</a></li>
+        <li><a genre="horror" href="https://www.imdb.com/search/title/?genres=crime">Crime</a></li>
+        <li><a genre="horror" href="https://www.imdb.com/search/title/?genres=animation">Animation</a></li>
       </div>
 
     </header>
@@ -60,43 +67,42 @@
       <!--This is the list of random movies -->
       <div id="random-movie-section">
         <div class="w3-row">
-          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-mobile w3-center">
-            <p>Random Movie</p>
+          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-mobile w3-center randomMovie">
+            <img class="movie" src=""/>
           </div>
-          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-mobile w3-center">
-            <p>Random Movie</p>
+          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-mobile w3-center randomMovie">
+            <img class="movie" src=""/>
           </div>
-          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-mobile w3-center">
-            <p>Random Movie</p>
+          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-mobile w3-center randomMovie">
+            <img class="movie" src=""/>
           </div>
-          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-mobile w3-center">
-            <p href="">Random Movie</p>
+          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-mobile w3-center randomMovie">
+            <img class="movie" src=""/>
           </div>
-          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-center">
-            <p>Random Movie</p>
+          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-center randomMovie">
+            <img class="movie" src=""/>
           </div>
-          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-center">
-            <p>Random Movie</p>
+          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-center randomMovie">
+            <img class="movie" src=""/>
           </div>
-          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-center">
-            <p>Random Movie</p>
+          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-center randomMovie">
+            <img class="movie" src=""/>
           </div>
-          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-center">
-            <p>Random Movie</p>
+          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-center randomMovie">
+            <img class="movie" src=""/>
           </div>
-          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-hide-medium w3-center">
-            <p>Random Movie</p>
+          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-hide-medium w3-center randomMovie">
+            <img class="movie" src=""/>
           </div>
-          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-hide-medium w3-center">
-            <p>Random Movie</p>
+          <div class="w3-card-2 w3-padding-64 w3-margin w3-col s2 w3-hide-small w3-hide-medium w3-center randomMovie">
+            <img class="movie" src=""/>
           </div>
         </div>
+
       </div>
     </main>
-
-
-
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApbdoz09Gz2XVvVoTkHP3a9x7VHlsVGN0&callback=initMap"></script>
     <script src="./assets/script.js"></script>
+    </body>
+    </html>
