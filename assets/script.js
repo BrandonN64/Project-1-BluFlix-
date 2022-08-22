@@ -27,10 +27,6 @@ function randomMoviesSpan() {
   };
   document.getElementById('random-movie-section').style.display = "block";
 }
-var buttonClickHandler = function(event) {
-	var genre = event.target.getAttribute('genre');
-  console.log(genre)
-}
 
 var requestOptions = {
   method: 'GET',
